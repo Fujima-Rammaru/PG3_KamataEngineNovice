@@ -1,10 +1,11 @@
 #pragma once
 
+
 enum SCENE{TITLE,STAGE,CLEAR};
 
 class IScene {
 protected: 
-
+	//シーン番号を管理する変数
 	static int sceneNo_;
 
 

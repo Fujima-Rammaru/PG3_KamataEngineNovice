@@ -10,6 +10,8 @@ public:
 
 
 private:
+	char preKeys[256];
+	char keys[256];
 
 };
 

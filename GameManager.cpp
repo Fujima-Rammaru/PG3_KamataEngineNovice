@@ -1,7 +1,6 @@
 #include "GameManager.h"
 #include"Novice.h"
 
-
 GameManager::GameManager()
 {
 	sceneArr_[TITLE] = std::make_unique<TitleScene>();
@@ -17,7 +16,7 @@ GameManager::~GameManager()
 
 int GameManager::Run()
 {
-	while (Novice::ProcessMessage == 0) {
+	while (Novice::ProcessMessage() == 0) {
 		Novice::BeginFrame();
 
 		//シーンのチェック
@@ -35,9 +34,18 @@ int GameManager::Run()
 		//描画処理
 		sceneArr_[currentSceneNo_]->Draw();
 
+
 		Novice::EndFrame();
 
+		// ESCキーが押されたらループを抜ける
+		if (preKeys[DIK_ESCAPE] == 0 && keys[DIK_ESCAPE] != 0) {
+			break;
+		}
 	}
+	
+	
+
+
 
 
 	return 0;

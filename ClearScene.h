@@ -9,6 +9,6 @@ public:
 	void Update() override;
 	void Draw() override;
 
-private:
-
+private:char preKeys[256];
+	   char keys[256];
 };
