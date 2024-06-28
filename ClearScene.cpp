@@ -7,13 +7,15 @@ void ClearScene::Init()
 
 void ClearScene::Update()
 {
-	if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE]) {
-		sceneNo_ =TITLE;
+	memcpy(preKeys, keys, 256);
+	Novice::GetHitKeyStateAll(keys);
+	if (!preKeys[DIK_SPACE] && keys[DIK_SPACE]) {
+		sceneNo_ = TITLE;
 	}
 }
 
 void ClearScene::Draw()
 {
-	Novice::DrawBox(0, 0, 1280, 720, 0.0f, BLUE, kFillModeSolid);
+	Novice::DrawBox(0, 0, 1280, 720, 0.0f, BLACK, kFillModeSolid);
 	Novice::ScreenPrintf(0, 0, "sceneNo=CLEAR");
 }

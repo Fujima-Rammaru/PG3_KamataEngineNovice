@@ -7,7 +7,9 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE]) {
+	memcpy(preKeys, keys, 256);
+	Novice::GetHitKeyStateAll(keys);
+	if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 		sceneNo_ = STAGE;
 	}
 

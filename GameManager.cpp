@@ -7,18 +7,16 @@ GameManager::GameManager()
 	sceneArr_[STAGE] = std::make_unique<StageScene>();
 	sceneArr_[CLEAR] = std::make_unique<ClearScene>();
 
-
+	currentSceneNo_ = TITLE;
 }
 
 GameManager::~GameManager()
 {
+	sceneArr_[STAGE]->~IScene();
 }
 
 int GameManager::Run()
 {
-	while (Novice::ProcessMessage() == 0) {
-		Novice::BeginFrame();
-
 		//シーンのチェック
 		prevSceneNo_ = currentSceneNo_;
 		currentSceneNo_ = sceneArr_[currentSceneNo_]->GetSceneNo();
@@ -33,20 +31,6 @@ int GameManager::Run()
 
 		//描画処理
 		sceneArr_[currentSceneNo_]->Draw();
-
-
-		Novice::EndFrame();
-
-		// ESCキーが押されたらループを抜ける
-		if (preKeys[DIK_ESCAPE] == 0 && keys[DIK_ESCAPE] != 0) {
-			break;
-		}
-	}
-	
-	
-
-
-
 
 	return 0;
 }

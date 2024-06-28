@@ -22,6 +22,7 @@ private:
 	//どのステージを呼び出すかを管理する変数
 	int currentSceneNo_;//現在のシーン
 	int prevSceneNo_;//前のシーン
-	char keys[256] = { 0 };
-	char preKeys[256] = { 0 };
+	char keys[256];
+	char preKeys[256];
+
 };
