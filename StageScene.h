@@ -1,26 +1,17 @@
 #pragma once
 #include"IScene.h"
 #include"Player.h"
+#include"InputHandler.h"
 
 class StageScene :public IScene
 {
+private:
+	InputHandler* inputHandler_ = nullptr;
+	ICommand* iCommand_ = nullptr;
+	Player* player_ = nullptr;
+
 public:
 	void Init() override;
 	void Update() override;
 	void Draw() override;
-
-private:
-	Player* player = nullptr;
-	struct Enemy {
-		Vector2 center;
-		int radius;
-		Vector2 speed;
-		bool isAlive;
-	};
-	float distance;
-	Enemy enemy = {
-		{640,10},
-		15,
-		{3,3},
-	};
 };
