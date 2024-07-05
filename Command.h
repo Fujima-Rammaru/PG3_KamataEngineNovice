@@ -3,6 +3,7 @@
 
 class Player;
 
+//インターフェイス
 class ICommand {
 
 public:

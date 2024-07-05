@@ -1,7 +1,6 @@
 #include "StageScene.h"
-#include "TitleScene.h"
 #include"Novice.h"
-#include"math.h"
+
 
 
 void StageScene::Init()
@@ -12,9 +11,6 @@ void StageScene::Init()
 	inputHandler_->AssignMoveRightCommand2PressKeyD();
 	inputHandler_->AssignMoveLeftCommand2PressKeyA();
 	player_ = new Player();
-
-	player_->Init();
-
 }
 
 void StageScene::Update()
@@ -22,9 +18,10 @@ void StageScene::Update()
 	//get input
 	iCommand_ = inputHandler_->HandleInput();
 
+	//コマンドがある場合は対象コマンドを実行する
 	if (this->iCommand_) {
 		iCommand_->Exec(*player_);
-}
+	}
 	player_->Update();
 
 }

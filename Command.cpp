@@ -9,3 +9,7 @@ void MoveLeftCommand::Exec(Player& player)
 {
 	player.MoveLeft();
 }
+
+ICommand::~ICommand()
+{
+}

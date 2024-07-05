@@ -1,13 +1,10 @@
 #include "Player.h"
 
-void Player::Init()
+Player::Player()
 {
-
 	center.x = float(WIN_WIDTH / 2);
 	center.y = float(PLAYER_START_POSY);
-	speed.x = 4.0f;
-	speed.y = 4.0f;
-
+	speed = 4.0f;
 }
 
 void Player::Update()
@@ -22,11 +19,11 @@ void Player::Draw()
 
 void Player::MoveRight()
 {
-	this->center.x += this->speed.x;
+	this->center.x += this->speed;
 }
 
 void Player::MoveLeft()
 {
-	this->center.x -= this->center.x;
+	this->center.x -= this->speed;
 }
 

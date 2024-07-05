@@ -20,6 +20,6 @@ void InputHandler::AssignMoveLeftCommand2PressKeyA()
 
 void InputHandler::AssignMoveRightCommand2PressKeyD()
 {
-	ICommand* command = new MoveRightCommand();
-	this->pressKeyD_ = command;
+	ICommand* command2 = new MoveRightCommand();
+	this->pressKeyD_ = command2;
 }
