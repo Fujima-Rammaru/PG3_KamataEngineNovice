@@ -10,6 +10,8 @@ void StageScene::Init()
 	//キーにコマンドを割り当てる
 	inputHandler_->AssignMoveRightCommand2PressKeyD();
 	inputHandler_->AssignMoveLeftCommand2PressKeyA();
+	inputHandler_->AssignMoveUPCommand2PressKeyW();
+	inputHandler_->AssignMoveDownCommand2PressKeyS();
 	player_ = new Player();
 }
 
@@ -23,7 +25,6 @@ void StageScene::Update()
 		iCommand_->Exec(*player_);
 	}
 	player_->Update();
-
 }
 
 void StageScene::Draw() {

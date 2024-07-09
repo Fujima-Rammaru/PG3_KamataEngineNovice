@@ -6,16 +6,20 @@ const char kWindowTitle[] = "GC2A_10_フジマ_ランマル_PG3";
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
+	//画面の横幅
+	const int WIN_WIDTH = 720;
+
+	//画面の縦幅
+	const int WIN_HEIGHT = 720;
+
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, 1280, 720);
+	Novice::Initialize(kWindowTitle,WIN_WIDTH,WIN_HEIGHT);
 	StageScene* stageScene;
 	stageScene = new StageScene();
 	stageScene->Init();
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
-
-
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -37,7 +41,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		stageScene->Draw();		///
+		stageScene->Draw();	
 		/// ↑描画処理ここまで
 		///
 

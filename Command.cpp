@@ -13,3 +13,13 @@ void MoveLeftCommand::Exec(Player& player)
 ICommand::~ICommand()
 {
 }
+
+void MoveUpCommand::Exec(Player& player)
+{
+	player.MoveUp();
+}
+
+void MoveDownCommand::Exec(Player& player)
+{
+	player.MoveDown();
+}
