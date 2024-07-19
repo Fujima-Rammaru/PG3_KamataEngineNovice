@@ -1,6 +1,9 @@
 #include <Novice.h>
 #include "StageScene.h"
-
+#include"IScene.h"
+#include"GameManager.h"
+#include "ClearScene.h"
+#include "TitleScene.h"
 const char kWindowTitle[] = "GC2A_10_フジマ_ランマル_PG3";
 
 // Windowsアプリでのエントリーポイント(main関数)
@@ -14,9 +17,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle,WIN_WIDTH,WIN_HEIGHT);
-	StageScene* stageScene;
-	stageScene = new StageScene();
-	stageScene->Init();
+
+	GameManager* gamemanager;
+	gamemanager = new GameManager;
+
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
@@ -33,7 +37,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		stageScene->Update();
+		gamemanager->Run();
 		///
 		/// ↑更新処理ここまで
 		///
@@ -41,7 +45,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		stageScene->Draw();	
+
 		/// ↑描画処理ここまで
 		///
 
@@ -54,7 +58,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		}
 	}
 
-	delete stageScene;
+	delete gamemanager;
 	// ライブラリの終了
 	Novice::Finalize();
 

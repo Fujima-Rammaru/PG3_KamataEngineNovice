@@ -7,43 +7,61 @@ Player::Player()
 	textureHandle = Novice::LoadTexture("white1x1.png");
 }
 
+void Player::Init()
+{
+	isAppear = true;
+	center_.x = float(WIN_WIDTH / 2);
+	center_.y = float(PLAYER_START_POSY);
+
+
+	for (int i = 0; i < 32; i++) {
+		bullet[i].center = { 0,0 };
+		bullet[i].isAppearB = false;
+		bullet[i].speed = { 0,10 };
+	}
+}
+
 void Player::Update()
 {
+	memcpy(preKeys, keys, 256);
+	Novice::GetHitKeyStateAll(keys);
 
+	if (isAppear) {
+		if (!preKeys[DIK_SPACE] && keys[DIK_SPACE]) {
+			for (int i = 0; i < 32; i++) {
+				if (!bullet[i].isAppearB) {
+					bullet[i].isAppearB = true;
+					bullet[i].center = center_;
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < 32; i++) {
+			if (bullet[i].isAppearB) {
+				bullet[i].center.y -= bullet[i].speed.y;
+			}
+
+			if (bullet[i].center.y < -bullet[i].radius) {
+				bullet[i].isAppearB = false;
+			}
+		}
+	}
 }
 
 void Player::Draw()
 {
-	std::array<Vector2, kNumCorner> cornerPosition;
-	for (int i = 0; i < cornerPosition.size(); i++) {
-		cornerPosition[i] = CornerPosition(center_, static_cast<Corner>(i));
+	if (isAppear) {
+
+		for (int i = 0; i < 32; i++) {
+			if (bullet[i].isAppearB) {
+				Novice::DrawEllipse(int(bullet[i].center.x), int(bullet[i].center.y), bullet[i].radius, bullet[i].radius, 0.0f, RED, kFillModeSolid);
+			}
+		}
+
+		Novice::DrawEllipse(int(center_.x), int(center_.y), int(radius), int(radius), 0.0f, WHITE, kFillModeSolid);
 	}
-	Novice::DrawQuad(
-		int(cornerPosition[kLeftTop].x),
-		int(cornerPosition[kLeftTop].y),
-		int(cornerPosition[kRightTop].x),
-		int(cornerPosition[kRightTop].y),
-		int(cornerPosition[kLeftBottom].x),
-		int(cornerPosition[kLeftBottom].y),
-		int(cornerPosition[kRightBottom].x),
-		int(cornerPosition[kRightBottom].y), 0, 0, int(kWidth), int(kHeight), textureHandle, RED
-	);
 }
-
-Vector2 Player::CornerPosition(const Vector2& center, Corner corner)
-{
-	Vector2 offSetTable[kNumCorner] = {
-		{center.x - kWidth / 2.0f,center.y - kHeight / 2.0f},//leftTop
-		{center.x + kWidth / 2.0f,center.y - kHeight / 2.0f},//rightTop
-		{center.x - kWidth / 2.0f,center.y + kHeight / 2.0f},//leftBottom
-		{center.x + kWidth / 2.0f,center.y + kHeight / 2.0f},//rightBottom
-	};
-
-	return  offSetTable[static_cast<int>(corner)];
-}
-
-
-
 void Player::MoveRight()
 {
 	this->center_.x += this->kSpeed;
