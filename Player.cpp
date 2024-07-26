@@ -12,7 +12,7 @@ void Player::Init()
 	isAppear = true;
 	center_.x = float(WIN_WIDTH / 2);
 	center_.y = float(PLAYER_START_POSY);
-
+	bullet.resize(32);
 
 	for (int i = 0; i < 32; i++) {
 		bullet[i].center = { 0,0 };
