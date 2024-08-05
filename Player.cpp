@@ -2,6 +2,7 @@
 #include<array>
 Player::Player()
 {
+	isAppear = true;
 	center_.x = float(WIN_WIDTH / 2);
 	center_.y = float(PLAYER_START_POSY);
 	textureHandle = Novice::LoadTexture("white1x1.png");
